@@ -55,14 +55,14 @@ public class StockQuoteRequestTest {
 	public void singleDay() throws Exception {
 		StockQuoteRequest request = new StockQuoteRequest();
 		request.setSymbol("tr");
-		Date date = date("2011-12-23");
+		Date date = date("2011-12-22");
 		request.setStartDate(date).setEndDate(date);
 		assertTrue(request.next());
-		assertEquals(23.85f, request.getOpen(), 0);
-		assertEquals(23.91f, request.getHigh(), 0);
-		assertEquals(23.70f, request.getLow(), 0);
-		assertEquals(23.74f, request.getClose(), 0);
-		assertEquals(52905l, request.getVolume());
+		assertEquals(23.92f, request.getOpen(), 0);
+		assertEquals(23.95f, request.getHigh(), 0);
+		assertEquals(23.64f, request.getLow(), 0);
+		assertEquals(23.86f, request.getClose(), 0);
+		assertEquals(57518l, request.getVolume());
 		assertFalse(request.next());
 	}
 }
