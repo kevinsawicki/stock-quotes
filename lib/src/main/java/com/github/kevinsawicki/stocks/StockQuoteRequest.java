@@ -29,7 +29,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.StringTokenizer;
 
 /**
  * Request class for retrieving historical stock quotes from the Google Finance
@@ -190,19 +189,15 @@ public class StockQuoteRequest {
 		final StringBuilder uri = new StringBuilder(BASE_URL);
 		uri.append('q').append('=').append(symbol);
 
-		DateFormat formatter = new SimpleDateFormat(FORMAT_DATE_INPUT);
-		if (startDate != null) {
-			uri.append('&').append(PARAM_START_DATE).append('=');
-			uri.append(formatter.format(startDate));
-		}
-		if (endDate != null) {
-			uri.append('&').append(PARAM_END_DATE).append('=');
-			uri.append(formatter.format(endDate));
-		}
+		final DateFormat formatter = new SimpleDateFormat(FORMAT_DATE_INPUT);
+		if (startDate != null)
+			uri.append('&').append(PARAM_START_DATE).append('=')
+					.append(formatter.format(startDate));
+		if (endDate != null)
+			uri.append('&').append(PARAM_END_DATE).append('=')
+					.append(formatter.format(endDate));
 
 		uri.append('&').append(PARAM_OUTPUT).append('=').append(OUTPUT_CSV);
-
-		System.out.println(uri);
 
 		final HttpRequest request = HttpRequest.get(uri);
 		if (!request.ok())
@@ -234,32 +229,42 @@ public class StockQuoteRequest {
 			return false;
 		}
 
-		final StringTokenizer tokenizer = new StringTokenizer(line, ",");
+		int length = line.length();
+		int start = 0;
+		int comma = line.indexOf(',');
 		int column = 0;
-		while (tokenizer.hasMoreElements())
+		while (start < length) {
 			switch (column++) {
 			case 0:
 				try {
-					date = outputFormat.parse(tokenizer.nextToken());
+					date = outputFormat.parse(line.substring(start, comma));
 				} catch (ParseException e) {
 					throw new IOException(e.getMessage());
 				}
 				break;
 			case 1:
-				open = Float.parseFloat(tokenizer.nextToken());
+				open = Float.parseFloat(line.substring(start, comma));
 				break;
 			case 2:
-				high = Float.parseFloat(tokenizer.nextToken());
+				high = Float.parseFloat(line.substring(start, comma));
 				break;
 			case 3:
-				low = Float.parseFloat(tokenizer.nextToken());
+				low = Float.parseFloat(line.substring(start, comma));
+				break;
 			case 4:
-				close = Float.parseFloat(tokenizer.nextToken());
+				close = Float.parseFloat(line.substring(start, comma));
+				break;
 			case 5:
-				volume = Long.parseLong(tokenizer.nextToken());
+				volume = Long.parseLong(line.substring(start, comma));
+				break;
 			default:
 				break;
 			}
+			start = comma + 1;
+			comma = line.indexOf(',', start);
+			if (comma == -1)
+				comma = length;
+		}
 		return true;
 	}
 }
