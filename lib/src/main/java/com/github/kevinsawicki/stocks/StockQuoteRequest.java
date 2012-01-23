@@ -189,13 +189,15 @@ public class StockQuoteRequest {
 		final StringBuilder uri = new StringBuilder(BASE_URL);
 		uri.append('q').append('=').append(symbol);
 
-		final DateFormat formatter = new SimpleDateFormat(FORMAT_DATE_INPUT);
-		if (startDate != null)
-			uri.append('&').append(PARAM_START_DATE).append('=')
-					.append(formatter.format(startDate));
-		if (endDate != null)
-			uri.append('&').append(PARAM_END_DATE).append('=')
-					.append(formatter.format(endDate));
+		if (startDate != null || endDate != null) {
+			final DateFormat formatter = new SimpleDateFormat(FORMAT_DATE_INPUT);
+			if (startDate != null)
+				uri.append('&').append(PARAM_START_DATE).append('=')
+						.append(formatter.format(startDate));
+			if (endDate != null)
+				uri.append('&').append(PARAM_END_DATE).append('=')
+						.append(formatter.format(endDate));
+		}
 
 		uri.append('&').append(PARAM_OUTPUT).append('=').append(OUTPUT_CSV);
 
