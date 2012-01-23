@@ -229,7 +229,7 @@ public class StockQuoteRequest {
 			return false;
 		}
 
-		int length = line.length();
+		final int length = line.length();
 		int start = 0;
 		int comma = line.indexOf(',');
 		int column = 0;
