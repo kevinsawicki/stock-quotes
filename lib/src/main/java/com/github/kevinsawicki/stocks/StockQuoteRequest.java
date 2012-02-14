@@ -205,7 +205,7 @@ public class StockQuoteRequest {
 		if (!request.ok())
 			throw new IOException("Bad response " + request.code());
 
-		final BufferedReader reader = new BufferedReader(request.reader());
+		final BufferedReader reader = request.bufferedReader();
 		// Skip first line that contains column names
 		reader.readLine();
 		return reader;
