@@ -168,8 +168,10 @@ public class StockQuoteRequest {
 
 	/**
 	 * Release the resources held by this request
+	 *
+	 * @return this request
 	 */
-	public void release() {
+	public StockQuoteRequest release() {
 		if (reader != null)
 			try {
 				reader.close();
@@ -177,6 +179,7 @@ public class StockQuoteRequest {
 				// Ignored
 			}
 		reader = null;
+		return this;
 	}
 
 	/**
