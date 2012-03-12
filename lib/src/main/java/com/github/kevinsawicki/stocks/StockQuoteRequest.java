@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -156,6 +157,16 @@ public class StockQuoteRequest {
 	}
 
 	/**
+	 * Set start date of request
+	 *
+	 * @param startDate
+	 * @return this request
+	 */
+	public StockQuoteRequest setStartDate(final Calendar startDate) {
+		return setStartDate(startDate != null ? startDate.getTime() : null);
+	}
+
+	/**
 	 * Set end date of request
 	 *
 	 * @param endDate
@@ -164,6 +175,16 @@ public class StockQuoteRequest {
 	public StockQuoteRequest setEndDate(final Date endDate) {
 		this.endDate = endDate;
 		return this;
+	}
+
+	/**
+	 * Set end date of request
+	 *
+	 * @param endDate
+	 * @return this request
+	 */
+	public StockQuoteRequest setEndDate(final Calendar endDate) {
+		return setEndDate(endDate != null ? endDate.getTime() : null);
 	}
 
 	/**
