@@ -21,6 +21,7 @@
  */
 package com.github.kevinsawicki.stocks;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -62,6 +63,7 @@ public class StockQuoteRequestTest {
 		assertTrue(request.getLow() > 0);
 		assertTrue(request.getClose() > 0);
 		assertTrue(request.getVolume() > 0);
+		assertEquals(date, request.getDate());
 		assertFalse(request.next());
 	}
 }
