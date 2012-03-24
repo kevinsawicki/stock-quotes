@@ -4,6 +4,16 @@ Library for accessing historical stock prices using the Google Finance API.
 
 ## Usage
 
+The stock-quotes library is available from [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.kevinsawicki%22%20AND%20a%3A%22stock-quotes%22).
+
+```xml
+<dependency>
+  <groupId>com.github.kevinsawicki</groupId>
+  <artifactId>stock-quotes</artifactId>
+  <version>0.3</version>
+</dependency> 
+```
+
 ### Get the closing prices for the current year
 
 The following example requests the prices of the stock symbol `tr` for the
