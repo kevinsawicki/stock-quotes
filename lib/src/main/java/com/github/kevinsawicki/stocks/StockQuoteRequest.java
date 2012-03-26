@@ -22,6 +22,7 @@
 package com.github.kevinsawicki.stocks;
 
 import com.github.kevinsawicki.http.HttpRequest;
+import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -225,11 +226,21 @@ public class StockQuoteRequest {
 
 		uri.append('&').append(PARAM_OUTPUT).append('=').append(OUTPUT_CSV);
 
-		final HttpRequest request = HttpRequest.get(uri);
+		final HttpRequest request;
+		try {
+			request = HttpRequest.get(uri);
+		} catch (HttpRequestException e) {
+			throw e.getCause();
+		}
 		if (!request.ok())
 			throw new IOException("Bad response " + request.code());
 
-		final BufferedReader reader = request.bufferedReader();
+		final BufferedReader reader;
+		try {
+			reader = request.bufferedReader();
+		} catch (HttpRequestException e) {
+			throw e.getCause();
+		}
 		// Skip first line that contains column names
 		reader.readLine();
 		return reader;
