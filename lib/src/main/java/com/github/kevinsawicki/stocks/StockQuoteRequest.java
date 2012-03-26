@@ -294,8 +294,6 @@ public class StockQuoteRequest {
 			case 5:
 				volume = Long.parseLong(line.substring(start, comma));
 				break;
-			default:
-				break;
 			}
 			start = comma + 1;
 			comma = line.indexOf(',', start);
