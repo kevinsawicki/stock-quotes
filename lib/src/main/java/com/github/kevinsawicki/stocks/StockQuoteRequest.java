@@ -246,6 +246,36 @@ public class StockQuoteRequest {
 		return reader;
 	}
 
+	private float parseFloat(final String input) throws IOException {
+		try {
+			return Float.parseFloat(input);
+		} catch (NumberFormatException e) {
+			IOException ioException = new IOException(e.getMessage());
+			ioException.initCause(e);
+			throw ioException;
+		}
+	}
+
+	private long parseLong(final String input) throws IOException {
+		try {
+			return Long.parseLong(input);
+		} catch (NumberFormatException e) {
+			IOException ioException = new IOException(e.getMessage());
+			ioException.initCause(e);
+			throw ioException;
+		}
+	}
+
+	private Date parseDate(final String input) throws IOException {
+		try {
+			return outputFormat.parse(input);
+		} catch (ParseException e) {
+			IOException ioException = new IOException(e.getMessage());
+			ioException.initCause(e);
+			throw ioException;
+		}
+	}
+
 	/**
 	 * Advance to next stock quote in response
 	 * <p>
@@ -273,26 +303,22 @@ public class StockQuoteRequest {
 		while (start < length) {
 			switch (column++) {
 			case 0:
-				try {
-					date = outputFormat.parse(line.substring(start, comma));
-				} catch (ParseException e) {
-					throw new IOException(e.getMessage());
-				}
+				date = parseDate(line.substring(start, comma));
 				break;
 			case 1:
-				open = Float.parseFloat(line.substring(start, comma));
+				open = parseFloat(line.substring(start, comma));
 				break;
 			case 2:
-				high = Float.parseFloat(line.substring(start, comma));
+				high = parseFloat(line.substring(start, comma));
 				break;
 			case 3:
-				low = Float.parseFloat(line.substring(start, comma));
+				low = parseFloat(line.substring(start, comma));
 				break;
 			case 4:
-				close = Float.parseFloat(line.substring(start, comma));
+				close = parseFloat(line.substring(start, comma));
 				break;
 			case 5:
-				volume = Long.parseLong(line.substring(start, comma));
+				volume = parseLong(line.substring(start, comma));
 				break;
 			}
 			start = comma + 1;
