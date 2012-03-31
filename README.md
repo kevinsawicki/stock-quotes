@@ -10,7 +10,7 @@ The stock-quotes library is available from [Maven Central](http://search.maven.o
 <dependency>
   <groupId>com.github.kevinsawicki</groupId>
   <artifactId>stock-quotes</artifactId>
-  <version>0.3</version>
+  <version>1.0</version>
 </dependency> 
 ```
 
