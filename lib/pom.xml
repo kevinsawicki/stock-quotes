@@ -12,7 +12,7 @@
 	<artifactId>stock-quotes</artifactId>
 	<version>0.4-SNAPSHOT</version>
 	<url>https://github.com/kevinsawicki/stock-quotes</url>
-	<description>Library for requesting stock quotes using Google Finance</description>
+	<description>Library for requesting stock quotes from Google Finance</description>
 	<inceptionYear>2011</inceptionYear>
 
 	<issueManagement>
