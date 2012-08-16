@@ -21,10 +21,12 @@
  */
 package com.github.kevinsawicki.stocks;
 
+import static java.util.Calendar.DAY_OF_MONTH;
+import static java.util.Calendar.DAY_OF_YEAR;
+import static java.util.Calendar.MONTH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -44,7 +46,7 @@ public class DateUtilsTest {
 		assertNotNull(date);
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.setTime(date);
-		assertEquals(1, calendar.get(Calendar.DAY_OF_YEAR));
+		assertEquals(1, calendar.get(DAY_OF_YEAR));
 	}
 
 	/**
@@ -56,7 +58,7 @@ public class DateUtilsTest {
 		assertNotNull(date);
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.setTime(date);
-		assertEquals(11, calendar.get(Calendar.MONTH));
-		assertEquals(31, calendar.get(Calendar.DAY_OF_MONTH));
+		assertEquals(11, calendar.get(MONTH));
+		assertEquals(31, calendar.get(DAY_OF_MONTH));
 	}
 }
