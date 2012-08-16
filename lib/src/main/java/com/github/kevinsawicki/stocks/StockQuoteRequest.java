@@ -72,7 +72,7 @@ public class StockQuoteRequest {
 
 	private long volume;
 
-	private final SimpleDateFormat outputFormat = new SimpleDateFormat(
+	private final DateFormat outputFormat = new SimpleDateFormat(
 			FORMAT_DATE_OUTPUT);
 
 	/**
