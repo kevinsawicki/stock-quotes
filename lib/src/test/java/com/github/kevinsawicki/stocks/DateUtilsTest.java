@@ -50,7 +50,7 @@ public class DateUtilsTest {
 	}
 
 	/**
-	 * Verify year start helper
+	 * Verify year end helper
 	 */
 	@Test
 	public void yearEnd() {
