@@ -205,6 +205,24 @@ public class StockQuoteRequest {
 	}
 
 	/**
+	 * Create request to uri
+	 * <p>
+	 * Sub-classes may override this method
+	 *
+	 * @param uri
+	 * @return request
+	 * @throws IOException
+	 */
+	protected HttpRequest createRequest(final CharSequence uri)
+			throws IOException {
+		try {
+			return HttpRequest.get(uri);
+		} catch (HttpRequestException e) {
+			throw e.getCause();
+		}
+	}
+
+	/**
 	 * Open reader to configured request parameters
 	 *
 	 * @return reader
@@ -226,12 +244,7 @@ public class StockQuoteRequest {
 
 		uri.append('&').append(PARAM_OUTPUT).append('=').append(OUTPUT_CSV);
 
-		final HttpRequest request;
-		try {
-			request = HttpRequest.get(uri);
-		} catch (HttpRequestException e) {
-			throw e.getCause();
-		}
+		final HttpRequest request = createRequest(uri);
 		if (!request.ok())
 			throw new IOException("Bad response " + request.code());
 
