@@ -37,33 +37,33 @@ import org.junit.Test;
  */
 public class StockQuoteRequestTest {
 
-	private static Date date(String date) {
-		final DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			return format.parse(date);
-		} catch (ParseException e) {
-			throw new IllegalArgumentException(e.getMessage());
-		}
-	}
+  private static Date date(String date) {
+    final DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    try {
+      return format.parse(date);
+    } catch (ParseException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
+  }
 
-	/**
-	 * Get quote for single day
-	 *
-	 * @throws Exception
-	 */
-	@Test
-	public void singleDay() throws Exception {
-		StockQuoteRequest request = new StockQuoteRequest();
-		request.setSymbol("tr");
-		Date date = date("2011-12-22");
-		request.setStartDate(date).setEndDate(date);
-		assertTrue(request.next());
-		assertTrue(request.getOpen() > 0);
-		assertTrue(request.getHigh() > 0);
-		assertTrue(request.getLow() > 0);
-		assertTrue(request.getClose() > 0);
-		assertTrue(request.getVolume() > 0);
-		assertEquals(date, request.getDate());
-		assertFalse(request.next());
-	}
+  /**
+   * Get quote for single day
+   *
+   * @throws Exception
+   */
+  @Test
+  public void singleDay() throws Exception {
+    StockQuoteRequest request = new StockQuoteRequest();
+    request.setSymbol("tr");
+    Date date = date("2011-12-22");
+    request.setStartDate(date).setEndDate(date);
+    assertTrue(request.next());
+    assertTrue(request.getOpen() > 0);
+    assertTrue(request.getHigh() > 0);
+    assertTrue(request.getLow() > 0);
+    assertTrue(request.getClose() > 0);
+    assertTrue(request.getVolume() > 0);
+    assertEquals(date, request.getDate());
+    assertFalse(request.next());
+  }
 }

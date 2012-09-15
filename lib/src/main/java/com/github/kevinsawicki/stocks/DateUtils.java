@@ -36,191 +36,191 @@ import java.util.GregorianCalendar;
  */
 public class DateUtils {
 
-	/**
-	 * Get today's date
-	 *
-	 * @return date
-	 */
-	public static Date today() {
-		return new Date();
-	}
+  /**
+   * Get today's date
+   *
+   * @return date
+   */
+  public static Date today() {
+    return new Date();
+  }
 
-	/**
-	 * Get yesterday's date
-	 *
-	 * @return date
-	 */
-	public static Date yesterday() {
-		final GregorianCalendar calendar = new GregorianCalendar(US);
-		calendar.add(DAY_OF_YEAR, -1);
-		return calendar.getTime();
-	}
+  /**
+   * Get yesterday's date
+   *
+   * @return date
+   */
+  public static Date yesterday() {
+    final GregorianCalendar calendar = new GregorianCalendar(US);
+    calendar.add(DAY_OF_YEAR, -1);
+    return calendar.getTime();
+  }
 
-	/**
-	 * Add the given number of days to the given date
-	 *
-	 * @param days
-	 * @param from
-	 * @return date
-	 */
-	public static Date addDays(final int days, final Calendar from) {
-		return addDays(days, from.getTimeInMillis());
-	}
+  /**
+   * Add the given number of days to the given date
+   *
+   * @param days
+   * @param from
+   * @return date
+   */
+  public static Date addDays(final int days, final Calendar from) {
+    return addDays(days, from.getTimeInMillis());
+  }
 
-	/**
-	 * Add the given number of days to the given date
-	 *
-	 * @param days
-	 * @param from
-	 * @return date
-	 */
-	public static Date addDays(final int days, final Date from) {
-		return addDays(days, from.getTime());
-	}
+  /**
+   * Add the given number of days to the given date
+   *
+   * @param days
+   * @param from
+   * @return date
+   */
+  public static Date addDays(final int days, final Date from) {
+    return addDays(days, from.getTime());
+  }
 
-	/**
-	 * Add the given number of days to the given date
-	 *
-	 * @param days
-	 * @param from
-	 * @return date
-	 */
-	public static Date addDays(final int days, final long from) {
-		final GregorianCalendar date = new GregorianCalendar(US);
-		date.setTimeInMillis(from);
-		date.add(DAY_OF_YEAR, days);
-		return date.getTime();
-	}
+  /**
+   * Add the given number of days to the given date
+   *
+   * @param days
+   * @param from
+   * @return date
+   */
+  public static Date addDays(final int days, final long from) {
+    final GregorianCalendar date = new GregorianCalendar(US);
+    date.setTimeInMillis(from);
+    date.add(DAY_OF_YEAR, days);
+    return date.getTime();
+  }
 
-	/**
-	 * Add the given number of months to the given date
-	 *
-	 * @param months
-	 * @param from
-	 * @return date
-	 */
-	public static Date addMonths(final int months, final Calendar from) {
-		return addMonths(months, from.getTimeInMillis());
-	}
+  /**
+   * Add the given number of months to the given date
+   *
+   * @param months
+   * @param from
+   * @return date
+   */
+  public static Date addMonths(final int months, final Calendar from) {
+    return addMonths(months, from.getTimeInMillis());
+  }
 
-	/**
-	 * Add the given number of months to the given date
-	 *
-	 * @param months
-	 * @param from
-	 * @return date
-	 */
-	public static Date addMonths(final int months, final Date from) {
-		return addMonths(months, from.getTime());
-	}
+  /**
+   * Add the given number of months to the given date
+   *
+   * @param months
+   * @param from
+   * @return date
+   */
+  public static Date addMonths(final int months, final Date from) {
+    return addMonths(months, from.getTime());
+  }
 
-	/**
-	 * Add the given number of months to the given date
-	 *
-	 * @param months
-	 * @param from
-	 * @return date
-	 */
-	public static Date addMonths(final int months, final long from) {
-		final GregorianCalendar date = new GregorianCalendar(US);
-		date.setTimeInMillis(from);
-		date.add(MONTH, months);
-		return date.getTime();
-	}
+  /**
+   * Add the given number of months to the given date
+   *
+   * @param months
+   * @param from
+   * @return date
+   */
+  public static Date addMonths(final int months, final long from) {
+    final GregorianCalendar date = new GregorianCalendar(US);
+    date.setTimeInMillis(from);
+    date.add(MONTH, months);
+    return date.getTime();
+  }
 
-	/**
-	 * Add the given number of years to the given date
-	 *
-	 * @param years
-	 * @param from
-	 * @return date
-	 */
-	public static Date addYears(final int years, final Calendar from) {
-		return addYears(years, from.getTimeInMillis());
-	}
+  /**
+   * Add the given number of years to the given date
+   *
+   * @param years
+   * @param from
+   * @return date
+   */
+  public static Date addYears(final int years, final Calendar from) {
+    return addYears(years, from.getTimeInMillis());
+  }
 
-	/**
-	 * Add the given number of years to the given date
-	 *
-	 * @param years
-	 * @param from
-	 * @return date
-	 */
-	public static Date addYears(final int years, final Date from) {
-		return addYears(years, from.getTime());
-	}
+  /**
+   * Add the given number of years to the given date
+   *
+   * @param years
+   * @param from
+   * @return date
+   */
+  public static Date addYears(final int years, final Date from) {
+    return addYears(years, from.getTime());
+  }
 
-	/**
-	 * Add the given number of years to the given date
-	 *
-	 * @param years
-	 * @param from
-	 * @return date
-	 */
-	public static Date addYears(final int years, final long from) {
-		final GregorianCalendar date = new GregorianCalendar(US);
-		date.setTimeInMillis(from);
-		date.add(YEAR, years);
-		return date.getTime();
-	}
+  /**
+   * Add the given number of years to the given date
+   *
+   * @param years
+   * @param from
+   * @return date
+   */
+  public static Date addYears(final int years, final long from) {
+    final GregorianCalendar date = new GregorianCalendar(US);
+    date.setTimeInMillis(from);
+    date.add(YEAR, years);
+    return date.getTime();
+  }
 
-	/**
-	 * Add the given number of weeks to the given date
-	 *
-	 * @param weeks
-	 * @param from
-	 * @return date
-	 */
-	public static Date addWeeks(final int weeks, final Calendar from) {
-		return addWeeks(weeks, from.getTimeInMillis());
-	}
+  /**
+   * Add the given number of weeks to the given date
+   *
+   * @param weeks
+   * @param from
+   * @return date
+   */
+  public static Date addWeeks(final int weeks, final Calendar from) {
+    return addWeeks(weeks, from.getTimeInMillis());
+  }
 
-	/**
-	 * Add the given number of weeks to the given date
-	 *
-	 * @param weeks
-	 * @param from
-	 * @return date
-	 */
-	public static Date addWeeks(final int weeks, final Date from) {
-		return addWeeks(weeks, from.getTime());
-	}
+  /**
+   * Add the given number of weeks to the given date
+   *
+   * @param weeks
+   * @param from
+   * @return date
+   */
+  public static Date addWeeks(final int weeks, final Date from) {
+    return addWeeks(weeks, from.getTime());
+  }
 
-	/**
-	 * Add the given number of weeks to the given date
-	 *
-	 * @param weeks
-	 * @param from
-	 * @return date
-	 */
-	public static Date addWeeks(final int weeks, final long from) {
-		final GregorianCalendar date = new GregorianCalendar(US);
-		date.setTimeInMillis(from);
-		date.add(WEEK_OF_YEAR, weeks);
-		return date.getTime();
-	}
+  /**
+   * Add the given number of weeks to the given date
+   *
+   * @param weeks
+   * @param from
+   * @return date
+   */
+  public static Date addWeeks(final int weeks, final long from) {
+    final GregorianCalendar date = new GregorianCalendar(US);
+    date.setTimeInMillis(from);
+    date.add(WEEK_OF_YEAR, weeks);
+    return date.getTime();
+  }
 
-	/**
-	 * Get the date of the first day of the current year
-	 *
-	 * @return date
-	 */
-	public static Date yearStart() {
-		final GregorianCalendar calendar = new GregorianCalendar(US);
-		calendar.set(DAY_OF_YEAR, 1);
-		return calendar.getTime();
-	}
+  /**
+   * Get the date of the first day of the current year
+   *
+   * @return date
+   */
+  public static Date yearStart() {
+    final GregorianCalendar calendar = new GregorianCalendar(US);
+    calendar.set(DAY_OF_YEAR, 1);
+    return calendar.getTime();
+  }
 
-	/**
-	 * Get the date of the last day of the current year
-	 *
-	 * @return date
-	 */
-	public static Date yearEnd() {
-		final GregorianCalendar calendar = new GregorianCalendar(US);
-		calendar.add(YEAR, 1);
-		calendar.set(DAY_OF_YEAR, 1);
-		calendar.add(DAY_OF_YEAR, -1);
-		return calendar.getTime();
-	}
+  /**
+   * Get the date of the last day of the current year
+   *
+   * @return date
+   */
+  public static Date yearEnd() {
+    final GregorianCalendar calendar = new GregorianCalendar(US);
+    calendar.add(YEAR, 1);
+    calendar.set(DAY_OF_YEAR, 1);
+    calendar.add(DAY_OF_YEAR, -1);
+    return calendar.getTime();
+  }
 }

@@ -37,28 +37,28 @@ import org.junit.Test;
  */
 public class DateUtilsTest {
 
-	/**
-	 * Verify year start helper
-	 */
-	@Test
-	public void yearStart() {
-		Date date = DateUtils.yearStart();
-		assertNotNull(date);
-		GregorianCalendar calendar = new GregorianCalendar();
-		calendar.setTime(date);
-		assertEquals(1, calendar.get(DAY_OF_YEAR));
-	}
+  /**
+   * Verify year start helper
+   */
+  @Test
+  public void yearStart() {
+    Date date = DateUtils.yearStart();
+    assertNotNull(date);
+    GregorianCalendar calendar = new GregorianCalendar();
+    calendar.setTime(date);
+    assertEquals(1, calendar.get(DAY_OF_YEAR));
+  }
 
-	/**
-	 * Verify year end helper
-	 */
-	@Test
-	public void yearEnd() {
-		Date date = DateUtils.yearEnd();
-		assertNotNull(date);
-		GregorianCalendar calendar = new GregorianCalendar();
-		calendar.setTime(date);
-		assertEquals(11, calendar.get(MONTH));
-		assertEquals(31, calendar.get(DAY_OF_MONTH));
-	}
+  /**
+   * Verify year end helper
+   */
+  @Test
+  public void yearEnd() {
+    Date date = DateUtils.yearEnd();
+    assertNotNull(date);
+    GregorianCalendar calendar = new GregorianCalendar();
+    calendar.setTime(date);
+    assertEquals(11, calendar.get(MONTH));
+    assertEquals(31, calendar.get(DAY_OF_MONTH));
+  }
 }
