@@ -31,6 +31,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Request class for retrieving historical stock quotes from the Google Finance
@@ -46,11 +48,38 @@ public class StockQuoteRequest {
 
   private static final String PARAM_OUTPUT = "output";
 
+  private static final String PARAM_SYMBOL = "q";
+
   private static final String OUTPUT_CSV = "csv";
 
   private static final String FORMAT_DATE_INPUT = "MMM'+'d'%2c+'yyyy";
 
   private static final String FORMAT_DATE_OUTPUT = "d'-'MMM'-'yy";
+
+  private static final DateFormat INPUT_FORMATTER = new SimpleDateFormat(
+      FORMAT_DATE_INPUT);
+
+  private static final DateFormat OUTPUT_FORMATTER = new SimpleDateFormat(
+      FORMAT_DATE_OUTPUT);
+
+  private static String formatDate(final DateFormat formatter, final Date date) {
+    synchronized (formatter) {
+      return formatter.format(date);
+    }
+  }
+
+  private static Date parseDate(final DateFormat formatter, final String date)
+      throws IOException {
+    try {
+      synchronized (formatter) {
+        return formatter.parse(date);
+      }
+    } catch (ParseException e) {
+      IOException ioException = new IOException(e.getMessage());
+      ioException.initCause(e);
+      throw ioException;
+    }
+  }
 
   private String symbol;
 
@@ -71,9 +100,6 @@ public class StockQuoteRequest {
   private float close;
 
   private long volume;
-
-  private final DateFormat outputFormat = new SimpleDateFormat(
-      FORMAT_DATE_OUTPUT);
 
   /**
    * Get date of stock quote
@@ -229,22 +255,16 @@ public class StockQuoteRequest {
    * @throws IOException
    */
   protected BufferedReader openReader() throws IOException {
-    final StringBuilder uri = new StringBuilder(BASE_URL);
-    uri.append('q').append('=').append(symbol);
+    Map<Object, Object> params = new HashMap<Object, Object>(4, 1);
+    params.put(PARAM_OUTPUT, OUTPUT_CSV);
+    params.put(PARAM_SYMBOL, symbol);
+    if (startDate != null)
+      params.put(PARAM_START_DATE, formatDate(INPUT_FORMATTER, startDate));
+    if (endDate != null)
+      params.put(PARAM_END_DATE, formatDate(INPUT_FORMATTER, endDate));
 
-    if (startDate != null || endDate != null) {
-      final DateFormat formatter = new SimpleDateFormat(FORMAT_DATE_INPUT);
-      if (startDate != null)
-        uri.append('&').append(PARAM_START_DATE).append('=')
-            .append(formatter.format(startDate));
-      if (endDate != null)
-        uri.append('&').append(PARAM_END_DATE).append('=')
-            .append(formatter.format(endDate));
-    }
-
-    uri.append('&').append(PARAM_OUTPUT).append('=').append(OUTPUT_CSV);
-
-    final HttpRequest request = createRequest(uri);
+    final HttpRequest request = createRequest(HttpRequest.append(BASE_URL,
+        params));
     if (!request.ok())
       throw new IOException("Bad response " + request.code());
 
@@ -279,16 +299,6 @@ public class StockQuoteRequest {
     }
   }
 
-  private Date parseDate(final String input) throws IOException {
-    try {
-      return outputFormat.parse(input);
-    } catch (ParseException e) {
-      IOException ioException = new IOException(e.getMessage());
-      ioException.initCause(e);
-      throw ioException;
-    }
-  }
-
   /**
    * Advance to next stock quote in response
    * <p>
@@ -316,7 +326,7 @@ public class StockQuoteRequest {
     while (start < length) {
       switch (column++) {
       case 0:
-        date = parseDate(line.substring(start, comma));
+        date = parseDate(OUTPUT_FORMATTER, line.substring(start, comma));
         break;
       case 1:
         open = parseFloat(line.substring(start, comma));
