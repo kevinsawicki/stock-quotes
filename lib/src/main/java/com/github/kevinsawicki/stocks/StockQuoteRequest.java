@@ -40,7 +40,7 @@ import java.util.Map;
  */
 public class StockQuoteRequest {
 
-  private static final String BASE_URL = "http://www.google.com/finance/historical?";
+  private static final String BASE_URL = "http://www.google.com/finance/historical";
 
   private static final String PARAM_START_DATE = "startdate";
 
