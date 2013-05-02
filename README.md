@@ -8,7 +8,7 @@ The stock-quotes library is available from [Maven Central](http://search.maven.o
 <dependency>
   <groupId>com.github.kevinsawicki</groupId>
   <artifactId>stock-quotes</artifactId>
-  <version>1.1</version>
+  <version>1.2</version>
 </dependency>
 ```
 
