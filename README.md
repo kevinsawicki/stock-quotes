@@ -1,4 +1,4 @@
-# Stock Quotes
+# Stock Quotes [![Build Status](https://travis-ci.org/kevinsawicki/stock-quotes.png)](https://travis-ci.org/kevinsawicki/stock-quotes)
 
 Library for accessing historical stock prices using the Google Finance API.
 
@@ -32,4 +32,3 @@ request.setEndDate(DateUtils.yearEnd());
 while(request.next())
   System.out.println(request.getDate() + ": " + request.getClose());
 ```
-
